@@ -9,6 +9,10 @@ use App\Http\Requests\UserRequest;
 class UsersController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth',['except' => ['show']]);
+    }
 
     public function show(User $user)
     {
@@ -17,11 +21,15 @@ class UsersController extends Controller
 
     public function edit(User $user)
     {
+        $this->authorize('update',$user);
+
         return view('users.edit',compact('user'));
     }
 
     public function update(User $user,UserRequest $userRequest,ImageUploadHandler $imageUpload)
     {
+        $this->authorize('update',$user);
+
         $data = $userRequest->all();
 
         if($userRequest->avatar)

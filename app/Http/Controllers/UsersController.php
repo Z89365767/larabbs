@@ -21,6 +21,8 @@ class UsersController extends Controller
 
     public function edit(User $user)
     {
+        dd($user->toArray());
+
         $this->authorize('update',$user);
 
         return view('users.edit',compact('user'));

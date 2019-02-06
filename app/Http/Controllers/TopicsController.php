@@ -45,7 +45,7 @@ class TopicsController extends Controller
 		$topic->user_id = Auth::id();
 		$topic->save();
 		//$topic = Topic::create($request->all());
-		return redirect()->route('topics.show', $topic->id)->with('message', 'Created successfully.');
+		return redirect()->route('topics.show', $topic->id)->with('success', '话题创建成功!');
 	}
 
 	//编辑页面
@@ -61,7 +61,7 @@ class TopicsController extends Controller
 		$this->authorize('update', $topic);
 		$topic->update($request->all());
 
-		return redirect()->route('topics.show', $topic->id)->with('message', 'Updated successfully.');
+		return redirect()->route('topics.show', $topic->id)->with('success', '话题更新成功!');
 	}
 
 	public function destroy(Topic $topic)

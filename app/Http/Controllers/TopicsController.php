@@ -52,7 +52,8 @@ class TopicsController extends Controller
 	public function edit(Topic $topic)
 	{
         $this->authorize('update', $topic);
-		return view('topics.create_and_edit', compact('topic'));
+		$categorys = Category::all();
+		return view('topics.create_and_edit', compact('topic','categorys'));
 	}
 
 	//编辑页面数据提交

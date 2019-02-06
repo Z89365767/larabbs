@@ -42,7 +42,8 @@
                 </div>
 
                 <div class="topic-body">
-                    {!! $topic->body !!}}
+                    {{-- Blade 的 {!! !!} 语法是直接数据，不会对数据做任何处理。在我们这种场景下，因为业务逻辑的特殊性，第二种方法不适用，我们将使用第一种方法，对用户提交的数据进行过滤来避免 XSS 攻击。 --}}
+                    {!! $topic->body !!}
                 </div>
 
                 <div class="operate">

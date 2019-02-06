@@ -4,7 +4,7 @@
         @foreach($topics as $topic)
 
             <li class="list-grop-item">
-                <a href="{{ route('topics.show',$topic->id) }}">
+                <a href="{{ $topic->link() }}">
                     {{ $topic->title }}
 
                 </a>

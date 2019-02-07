@@ -55,7 +55,7 @@ class TopicsController extends Controller
 		$topic->user_id = Auth::id();
 		$topic->save();
 		//$topic = Topic::create($request->all());
-		return redirect()->route($topic->link(), $topic->id)->with('success', '话题创建成功!');
+		return redirect()->to($topic->link())->with('success', '话题创建成功!');
 	}
 
 	//编辑页面

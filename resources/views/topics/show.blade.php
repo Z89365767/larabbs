@@ -70,7 +70,8 @@
         {{-- 用户回复列表 --}}
         <div class="panel panel-default topic-reply">
             <div class="panel-body">
-                @include('topics._reply_box',['topic' => $topic])
+                {{-- 话题回复功能我们只允许登录用户使用，未登录用户不显示即可。Laravel Blade 模板提供了一个『视条件加载子模板』的语法： --}}
+                @includeWhen(Auth::check(),'topics._reply_box',['topic' => $topic])
                 {{-- 注意读取回复列表时需使用懒加载来避免 N+1 问题 --}}
                 @include('topics._reply_list',['replies' => $topic->replies()->with('user')->get()])
             </div>

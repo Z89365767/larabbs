@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Reply;
+use App\Notifications\TopicReplied;
 
 // creating, created, updating, updated, saving,
 // saved,  deleting, deleted, restoring, restored
@@ -16,6 +17,9 @@ class ReplyObserver
 
         //话题回复的内容限定与话题的内容无异，因此我们使用同样的过滤规则 —— user_topic_body
         $reply->content = clean($reply->content,'user_topic_body');
+
+        //通知作者话题被回复了
+        $reply->topic->user->notify(new TopicReplied($reply));
     }
 
     public function updating(Reply $reply)

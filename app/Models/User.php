@@ -75,4 +75,28 @@ class User extends Authenticatable
     {
         return $this->hasMany(Reply::class);
     }
+
+    //属性修改器
+    public function setPasswordAttribute($value)
+    {
+
+        if(strlen($value) != 60)
+        {
+            $value = bcrypt($value);
+        };
+
+        $this->attributes['password'] = $value;
+    }
+
+    public function setAvatarAttribute($path)
+    {
+        //如果不是"http"子串开头,那就是从后台上传的,需要补全URL
+        if(!starts_with($path,'http'))
+        {
+            //拼接完整的URL
+            $path = config('app.url') . "/uploads/images/avatars/$path";
+        }
+
+        $this->attributes['avatar'] = $path;
+    }
 }

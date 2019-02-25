@@ -11,4 +11,15 @@ class PagesController extends Controller
     {
         return view('pages.root');
     }
+
+    public function permissionDenied()
+    {
+        //如果当前用户有权访问后台,直接跳转访问
+        if(config('administrator.permission')())
+        {
+            return redirect(url('administrator.uri'));
+        }
+
+        return view('pages.permission_denied');
+    }
 }

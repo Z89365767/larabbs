@@ -79,6 +79,7 @@ return array(
         '站点管理' => [
             //需要注意的是此类后台，需要在菜单里使用 settings. 前缀，并且将文件放置于 settings_config_path 定义的目录中。
             'settings.site',
+            'links',
         ],
     ],
 
